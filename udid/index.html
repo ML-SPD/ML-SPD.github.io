@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" name="viewport" id="viewport" />
+<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" id="viewport" />
 <title>iOS裝置線上取得UDID</title>
 
 <style>
@@ -21,7 +21,12 @@
     border: 2px solid #ccc; /* 添加2像素寬度、灰色實線的邊框 */
     border-radius: 5px; /* 可選：添加5像素的圓角 */
   }
+  .buttons {
+    color: blue;
+    text-decoration: none;
+  }
 </style>
+</head>
 
 <body>
 <div id="content">
@@ -30,7 +35,12 @@
 <p><span style="color:#FF0000; font-size:18px;">請使用Safari開啟，否則會出現亂碼或是無法下載的情況。</span></p>
 <p><span style="color:#1dd600; font-size:18px;">請使用Safari開啟，否則會出現亂碼或是無法下載的情況。</span></p>
 
-<p><a class="buttons" href="get_mobileconfig.php" target="_blank"><span style="font-size:18px;">1.點擊安裝憑證，已獲取您裝置的UDID</span></a></p>
+<!-- 修改這裡，直接提供文件下載連結 -->
+<p>
+    <a class="buttons" href="assets/udid.mobileconfig" download="udid.mobileconfig">
+        <span style="font-size:18px;">1.點擊安裝憑證，已獲取您裝置的UDID</span>
+    </a>
+</p>
 
 <img src="image/S1.jpg" alt="Image 1">
 <img src="image/S2.jpg" alt="Image 2">
