@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>接收設備資料</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .data {
+            font-size: 18px;
+            color: #333;
+        }
+        .data span {
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h1>接收到的設備資料</h1>
+    <div id="device-info" class="data">
+        正在處理中，請稍候...
+    </div>
+
+    <script>
+        // 解析 URL 中的參數
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split("&");
+            for (const pair of pairs) {
+                const [key, value] = pair.split("=");
+                if (key && value) {
+                    params[decodeURIComponent(key)] = decodeURIComponent(value);
+                }
+            }
+            return params;
+        }
+
+        // 顯示設備資料
+        function displayDeviceInfo() {
+            const params = getQueryParams();
+            const deviceInfoDiv = document.getElementById("device-info");
+            if (Object.keys(params).length > 0) {
+                let content = "<ul>";
+                for (const [key, value] of Object.entries(params)) {
+                    content += `<li><span>${key}:</span> ${value}</li>`;
+                }
+                content += "</ul>";
+                deviceInfoDiv.innerHTML = content;
+            } else {
+                deviceInfoDiv.textContent = "未接收到任何設備資料。";
+            }
+        }
+
+        // 執行
+        displayDeviceInfo();
+    </script>
+</body>
+</html>
