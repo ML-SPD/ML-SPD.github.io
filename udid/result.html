@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>設備資料</title>
+</head>
+<body>
+    <h1>接收到的設備資料</h1>
+    <ul id="device-data">
+        <li><strong>UDID:</strong> <span id="udid">未知</span></li>
+        <li><strong>IMEI:</strong> <span id="imei">未知</span></li>
+        <li><strong>ICCID:</strong> <span id="iccid">未知</span></li>
+        <li><strong>VERSION:</strong> <span id="version">未知</span></li>
+        <li><strong>PRODUCT:</strong> <span id="product">未知</span></li>
+    </ul>
+    <script>
+        // 從 URL 查詢參數中提取數據
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('udid').textContent = params.get('UDID') || '未知';
+        document.getElementById('imei').textContent = params.get('IMEI') || '未知';
+        document.getElementById('iccid').textContent = params.get('ICCID') || '未知';
+        document.getElementById('version').textContent = params.get('VERSION') || '未知';
+        document.getElementById('product').textContent = params.get('PRODUCT') || '未知';
+    </script>
+</body>
+</html>
