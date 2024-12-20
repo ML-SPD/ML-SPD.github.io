@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<plist version="1.0">
-    <dict>
-        <key>UDID</key>
-        <string>1234567890</string>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+    <plist version="1.0">
+      <dict>
+        <key>IMEI</key>
+        <string>12 123456 123456 7</string>
         <key>PRODUCT</key>
-        <string>iPhone12,3</string>
+        <string>iPhone8,1</string>
+        <key>UDID</key>
+        <string>b59769e6c28b73b1195009d4b21cXXXXXXXXXXXX</string>
         <key>VERSION</key>
-        <string>14.4</string>
-        <key>DEVICE_NAME</key>
-        <string>John's iPhone</string>
-    </dict>
-</plis>
+        <string>15B206</string>
+      </dict>
+    </plist>
