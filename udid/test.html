@@ -1,27 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDM Callback</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>處理裝置資料</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    text-align: center;
+    margin-top: 50px;
+  }
+  #info {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+  }
+  #error {
+    color: red;
+  }
+</style>
 </head>
 <body>
-    <h1>MDM 回傳資料</h1>
-    <pre id="output">等待資料中...</pre>
+<h1>處理裝置資料</h1>
+<p>正在解析裝置資料，請稍候...</p>
+<div id="info"></div>
+<script>
+  // 模擬解析 POST 資料 (靜態 GitHub Pages 無法接受 POST，需自行模擬)
+  document.addEventListener('DOMContentLoaded', function() {
+    // 從 URL 獲取查詢參數（假設資料附加到 URL）
+    const queryParams = new URLSearchParams(window.location.search);
 
-    <script>
-        // 從 URL 中解析 Query String
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
+    // 獲取模擬的裝置資訊
+    const udid = queryParams.get('UDID');
+    const imei = queryParams.get('IMEI');
+    const iccid = queryParams.get('ICCID');
+    const version = queryParams.get('VERSION');
+    const product = queryParams.get('PRODUCT');
 
-        // 顯示資料
-        const udid = urlParams.get('udid');
-        const product = urlParams.get('product');
+    // 顯示解析結果或錯誤訊息
+    const infoDiv = document.getElementById('info');
+    if (udid) {
+      infoDiv.innerHTML = `
+        <p><strong>UDID:</strong> ${udid}</p>
+        <p><strong>IMEI:</strong> ${imei || 'N/A'}</p>
+        <p><strong>ICCID:</strong> ${iccid || 'N/A'}</p>
+        <p><strong>版本:</strong> ${version || 'N/A'}</p>
+        <p><strong>產品:</strong> ${product || 'N/A'}</p>
+        <p>資料已成功處理，稍後將進行重導向。</p>
+      `;
 
-        document.getElementById('output').innerText = `
-            UDID: ${udid || '無'}
-            Product: ${product || '無'}
-        `;
-    </script>
+      // 模擬重導向到新頁面
+      setTimeout(() => {
+        window.location.href = 'https://ml-spd.github.io/udid/result.html';
+      }, 5000); // 5 秒後重導
+    } else {
+      infoDiv.innerHTML = '<p id="error">無法獲取裝置資料，請確認安裝步驟是否正確。</p>';
+    }
+  });
+</script>
 </body>
 </html>
