@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MDM Callback</title>
+</head>
+<body>
+    <h1>MDM 回傳資料</h1>
+    <pre id="output">等待資料中...</pre>
+
+    <script>
+        // 從 URL 中解析 Query String
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        // 顯示資料
+        const udid = urlParams.get('udid');
+        const product = urlParams.get('product');
+
+        document.getElementById('output').innerText = `
+            UDID: ${udid || '無'}
+            Product: ${product || '無'}
+        `;
+    </script>
+</body>
+</html>
