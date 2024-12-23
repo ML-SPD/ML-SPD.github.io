@@ -10,18 +10,38 @@
     <ul id="device-data">
         <li><strong>UDID:</strong> <span id="udid">未知</span></li>
         <li><strong>IMEI:</strong> <span id="imei">未知</span></li>
-        <li><strong>ICCID:</strong> <span id="iccid">未知</span></li>
         <li><strong>VERSION:</strong> <span id="version">未知</span></li>
         <li><strong>PRODUCT:</strong> <span id="product">未知</span></li>
+        <li><strong>PRODUCT NAME:</strong> <span id="product_name">未知</span></li>                
     </ul>
+    <p><span style="font-size:18px;">裝置持有者:<input style="text" id="User" name="User" size="50" value="" /> </span></p>
+    <br>
+    <br>
+    <button onclick="send()" style="font-size:18px;" >將UDID傳送給開發者</button>            
+
     <script>
         // 從 URL 查詢參數中提取數據
         const params = new URLSearchParams(window.location.search);
         document.getElementById('udid').textContent = params.get('UDID') || '未知';
         document.getElementById('imei').textContent = params.get('IMEI') || '未知';
-        document.getElementById('iccid').textContent = params.get('ICCID') || '未知';
-        document.getElementById('version').textContent = params.get('VERSION') || '未知';
-        document.getElementById('product').textContent = params.get('PRODUCT') || '未知';
+        document.getElementById('version').textContent = params.get('DEVICE_VERSION') || '未知';
+        document.getElementById('product').textContent = params.get('DEVICE_PRODUCT') || '未知';
+        document.getElementById('product_name').textContent = params.get('DEVICE_NAME') || '未知';
+
+        // send function
+        function send() {
+            const user = document.getElementById('User').value.trim();
+
+            if (!user) {
+                // 如果沒有輸入裝置持有者，顯示提示訊息
+                alert('請輸入裝置持有者！');
+                return;
+            }
+
+            // 如果有輸入，繼續處理資料（這裡的內容可以稍後根據需求填寫）
+            console.log("準備將資料傳送給開發者...");
+            // 傳送資料的程式碼（例如發送 AJAX 請求、提交表單等）
+        }
     </script>
 </body>
 </html>

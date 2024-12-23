@@ -1,32 +1,128 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML>
+
+<script src="../lib/js/jquery.1.9.1.js"></script>
+<script type="text/javascript">
+	
+	var mlcontrol_ios = "itms-services://?action=download-manifest&url=https://ML-SPD.github.io/file/mlcontrol/mlcontrol.plist";
+// 	var mlcontrol_aos = "app/file/xxx/xxx.apk";
+	
+	
+	$(document).ready(function() {
+    	document.getElementById("mlcontrol_link_ios").setAttribute("href",mlcontrol_ios);
+//     	document.getElementById("mlcontrol_link_aos").setAttribute("href",mlcontrol_aos);
+	}); 
+
+</script>
 
 <html>
+	<head>
+		<title>Meiloon-智能產品開發部-APP測試</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css?ver=1.0" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
 
-<head>
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Meiloon</span>
+								</a>
 
-<title>Meiloon智能產品開發-測試區</title>
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
 
-</head>
+						</div>
+					</header>
 
-<body>
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">首頁</a></li>
+							<li><a href="udid/index.html">取得UDID</a></li>
+						</ul>
+					</nav>
 
-<a style="font-size:50px"href="itms-services://?action=download-manifest&url=https://ML-SPD.github.io/file/mlcontrol/mlcontrol.plist"> 點擊安裝iOS</a>
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<header>
+								<h1>請直接點選下載。</h1>
+								<p>iOS用戶如遇到無法下載安裝的情況，請先點選右上角MENU內的UDID，並依照網頁說明操作。</p>
+							</header>
+							<section class="tiles">
+								<article class="style1">
+									<span class="image">
+										<img src="images/icon_ml_control.png" alt="" />
+									</span>
+									<a id="mlcontrol_link_ios">
+										<h2>iOS<br>
+										ML Control</h2>
+										<div class="content">
+										</div>
+									</a>
+								</article>
+								
+								<!-- 
+<article class="style2">
+									<span class="image">
+										<img src="images/icon_ml_control.png" alt="" />
+									</span>
+									<a id=""mlcontrol_link_android">
+										<h2>Android<br>
+										ML Control</h2>
+										<div class="content">
+										</div>
+									</a>
+								</article>
+ -->
+																
+							</section>
+						</div>
+					</div>
 
-<br>
-<br>
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+<!-- 									<li><a href="#" class="icon style2 fa-twitter"><span class="label">Twitter</span></a></li> -->
+<!-- 									<li><a href="#" class="icon style2 fa-facebook"><span class="label">Facebook</span></a></li> -->
+<!-- 									<li><a href="#" class="icon style2 fa-instagram"><span class="label">Instagram</span></a></li> -->
+<!-- 									<li><a href="#" class="icon style2 fa-github"><span class="label">GitHub</span></a></li> -->
+									<li><a href="tel:033261611" class="icon style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="mailto:mars.lin@meiloon.com?subject=Inquiry&body=Hello,%20I%20have%20a%20question..." class="icon style2 fa-envelope-o"><span class="label">Email</span></a></li>
 
-<a style="font-size:50px"href="https://ML-SPD.github.io/udid"> 點擊取得Apple手機代碼</a>
+								</ul>
+							</section>
 
-<br>
-<br>
+							<ul class="copyright">
+								<li>&copy; Copyright © 2024  Inc. All rights reserved</li><li>Design: <a href="https://www.meiloon.com.tw/">智能產品開發部</a></li>
+							</ul>
+						</div>
+					</footer>
 
-<a style="font-size:50px"href=""> Android - 點擊安裝安卓</a>
+			</div>
 
-<br>
-<br>
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
 
-</body>
-
+	</body>
 </html>
