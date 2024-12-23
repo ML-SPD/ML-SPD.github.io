@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iOS裝置線上取得UDID</title>
+<style>
+  body {
+    font-size: 18px;
+  }
+  #content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  img {
+    max-width: 70%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+  .buttons {
+    color: blue;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+<div id="content">
+
+<p><span style="color:orange; font-size:18px;">請使用Safari開啟，否則會出現亂碼或是無法下載的情況。</span></p>
+<p><span style="color:#FF0000; font-size:18px;">請使用Safari開啟，否則會出現亂碼或是無法下載的情況。</span></p>
+<p><span style="color:#1dd600; font-size:18px;">請使用Safari開啟，否則會出現亂碼或是無法下載的情況。</span></p>
+
+<!-- 下載按鈕 -->
+<p>
+    <a class="buttons" href="#" id="download-link">
+        <span style="font-size:18px;">1. 點擊安裝憑證，已獲取您裝置的UDID</span>
+    </a>
+</p>
+
+<img src="image/S1.jpg" alt="Image 1">
+<img src="image/S2.jpg" alt="Image 2">
+<img src="image/S3.jpg" alt="Image 3">
+<img src="image/S4.jpg" alt="Image 4">
+<img src="image/S5.jpg" alt="Image 5">
+<img src="image/S6.jpg" alt="Image 6">
+
+</div>
+
+<script>
+// 模擬 PHP 的功能
+document.getElementById('download-link').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    // 定義憑證內容
+    const mobileconfigContent = `
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>PayloadContent</key>
+        <dict>
+            <key>URL</key>
+            <string>https://x8ki-letl-twmt.n7.xano.io/api:qy4KBKjQ/receive</string>
+            <key>DeviceAttributes</key>
+            <array>
+                <string>UDID</string>
+                <string>IMEI</string>
+                <string>ICCID</string>
+                <string>VERSION</string>
+                <string>PRODUCT</string>
+            </array>
+        </dict>
+        <key>PayloadOrganization</key>
+        <string>meiloon.com</string>
+        <key>PayloadDisplayName</key>
+        <string>查詢設備UDID</string>
+        <key>PayloadVersion</key>
+        <integer>1</integer>
+        <key>PayloadUUID</key>
+        <string>3C4DC7D2-E475-3375-489C-0BB8D416A922</string>
+        <key>PayloadIdentifier</key>
+        <string>meiloon.profile-service</string>
+        <key>PayloadDescription</key>
+        <string>本文件僅用於獲取裝置UDID</string>
+        <key>PayloadType</key>
+        <string>Profile Service</string>
+    </dict>
+</plist>`;
+
+    // 創建 Blob，設定 MIME 類型
+    const blob = new Blob([mobileconfigContent], { type: 'application/x-apple-aspen-config; charset=utf-8' });
+
+    // 建立下載連結
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'udid.mobileconfig'; // 檔名
+    a.click();
+
+    // 清理 URL 物件
+    URL.revokeObjectURL(url);
+});
+</script>
+</body>
+</html>
