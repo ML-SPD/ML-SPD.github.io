@@ -1,4 +1,11 @@
 const { XMLParser } = require("fast-xml-parser");
+const fs = require("fs");
+const path = require("path");
+
+// let fetch;
+// (async () => {
+//   fetch = (await import('node-fetch')).default;
+// })();
 
 exports.handler = async (event) => {
     try {
@@ -12,7 +19,7 @@ exports.handler = async (event) => {
 
         // 對 Base64 資料進行解碼
         const decodedBody = Buffer.from(event.body, 'base64').toString('utf-8');
-        console.log("Decoded body:", decodedBody);
+//         console.log("Decoded body:", decodedBody);
 
         // 提取 XML 資料
         const plistStart = '<?xml version="1.0"';
@@ -62,31 +69,73 @@ exports.handler = async (event) => {
 
         console.log("Final parsed result:", result);
         
-        // 從 Apple_mobile_device_types.txt 讀取設備名稱
-        const filePath = path.resolve(__dirname, "Apple_mobile_device_types.txt");
+        const deviceProduct = result.PRODUCT || "";
+        const udid = result.UDID || "";
+        const deviceVersion = result.VERSION || "";
+        
         let deviceName = deviceProduct;
+        
+        // 從 Apple_mobile_device_types.txt 讀取設備名稱
+	    const filePath = path.join(process.cwd(), 'udid/Apple_mobile_device_types.txt');	    
+        console.log("deviceProduct:", deviceProduct);
 
         if (fs.existsSync(filePath)) {
-            const fileContents = fs.readFileSync(filePath, "utf8");
+			const fileContents = fs.readFileSync(filePath, "utf8");
+			console.log("fileContents:",fileContents);		
+		
+			// 使用正則表達式查找對應的行
+			const pattern = new RegExp(`^${deviceProduct}\\s*:\\s*(.+)$`, "m");
+			const match = fileContents.match(pattern);
+		
+			if (match && match[1]) {
+				deviceName = match[1].trim(); // 提取冒號後的名稱部分
+			} else {
+				console.warn(`Device product "${deviceProduct}" not found in file.`);
+			}
+		} else {
+			console.warn(`File not found: ${filePath}`);
+		} 
+		
+		
+// 		exports.handler = async () => {
+// 			try {
+// 				const response = await fetch("https://ml-webservice.netlify.app/udid/Apple_mobile_device_types.txt");
+// 				const fileContents = await response.text();
+// 				console.log("fileContents:",fileContents)
+// 	
+// 				let deviceName = deviceProduct;
+// 		
+// 				// 使用正則表達式查找對應的行
+// 				const pattern = new RegExp(`^${deviceProduct}\\s*:\\s*(.+)$`, "m");
+// 				const match = fileContents.match(pattern);
+// 			
+// 				if (match && match[1]) {
+// 					deviceName = match[1].trim(); // 提取冒號後的名稱部分
+// 				} else {
+// 					console.warn(`Device product "${deviceProduct}" not found in file.`);
+// 				}
+// 		
+// 				return {
+// 			  		statusCode: 200,
+// 			  		body: JSON.stringify({ message: "檔案內容已讀取", deviceName }),
+// 				};
+// 		  	} catch (err) {
+// 				return {
+// 			  		statusCode: 500,
+// 			  		body: JSON.stringify({ error: "檔案讀取失敗", details: err.message }),
+// 				};
+// 		  	}
+// 		};
 
-            // 使用正則表達式查找
-            const pattern = new RegExp(`^.*${deviceProduct}.*$`, "m");
-            const match = fileContents.match(pattern);
-
-            if (match && match[0]) {
-                deviceName = match[0].substring(deviceProduct.length + 3).trim();
-            }
-        } else {
-            console.warn(`File not found: ${filePath}`);
-        }        
+		
 
         // 建立重新導向的 URL
         const params = new URLSearchParams({
-            UDID: result.UDID || "",
+            UDID: udid,
             IMEI: result.IMEI || "",
-            DEVICE_PRODUCT: result.PRODUCT || "",
-            DEVICE_VERSION: result.VERSION || "",
-            DEVICE_NAME: deviceName || "",
+            DEVICE_PRODUCT: deviceProduct,
+            DEVICE_VERSION: deviceVersion,
+            DEVICE_NAME: deviceName,
         });
         const redirectUrl = `https://ml-webservice.netlify.app/udid/result.html?${params.toString()}`;
         console.log("Redirect URL:", redirectUrl);
