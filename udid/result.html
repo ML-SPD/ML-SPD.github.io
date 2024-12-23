@@ -27,20 +27,49 @@
         document.getElementById('version').textContent = params.get('DEVICE_VERSION') || '未知';
         document.getElementById('product').textContent = params.get('DEVICE_PRODUCT') || '未知';
         document.getElementById('product_name').textContent = params.get('DEVICE_NAME') || '未知';
-
+        
         // send function
-        function send() {
+        async function send() {
             const user = document.getElementById('User').value.trim();
-
             if (!user) {
-                // 如果沒有輸入裝置持有者，顯示提示訊息
                 alert('請輸入裝置持有者！');
                 return;
             }
 
-            // 如果有輸入，繼續處理資料（這裡的內容可以稍後根據需求填寫）
-            console.log("準備將資料傳送給開發者...");
-            // 傳送資料的程式碼（例如發送 AJAX 請求、提交表單等）
+            // 組合訊息內容並加入換行符
+            const udid = document.getElementById('udid').textContent;
+            const imei = document.getElementById('imei').textContent;
+            const version = document.getElementById('version').textContent;
+            const product = document.getElementById('product').textContent;
+            const productName = document.getElementById('product_name').textContent;
+
+            const message = `裝置持有者: ${user}\n` +
+                            `UDID: ${udid}\n` +
+                            `IMEI: ${imei}\n` +
+                            `版本: ${version}\n` +
+                            `產品: ${product}\n` +
+                            `產品名稱: ${productName}`;
+
+            console.log("準備傳送資料:", message);
+
+            try {
+                // 使用 fetch 傳送資料到 API
+                const response = await fetch(`https://x8ki-letl-twmt.n7.xano.io/api:KfiqIOLT/sendMsg?msg=${encodeURIComponent(message)}`, {
+                    method: 'GET',
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    alert('資料已成功傳送！');
+                    console.log('傳送成功:', result);
+                } else {
+                    alert('資料傳送失敗！');
+                    console.error('傳送失敗:', response.statusText);
+                }
+            } catch (error) {
+                alert('傳送過程中發生錯誤！');
+                console.error('錯誤詳情:', error);
+            }
         }
     </script>
 </body>
