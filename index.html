@@ -3,13 +3,13 @@
 <script src="../lib/js/jquery.1.9.1.js"></script>
 <script type="text/javascript">
 	
-	var mlcontrol_ios = "itms-services://?action=download-manifest&url=https://ML-SPD.github.io/file/mlcontrol/mlcontrol.plist";
-// 	var mlcontrol_aos = "app/file/xxx/xxx.apk";
+	var mlcontrol_ios = "itms-services://?action=download-manifest&url=https://ml-webservice.netlify.app/file/mlcontrol/mlcontrol.plist";
+	var mlcontrol_aos = "https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk";
 	
 	
 	$(document).ready(function() {
     	document.getElementById("mlcontrol_link_ios").setAttribute("href",mlcontrol_ios);
-//     	document.getElementById("mlcontrol_link_aos").setAttribute("href",mlcontrol_aos);
+    	document.getElementById("mlcontrol_link_aos").setAttribute("href",mlcontrol_aos);
 	}); 
 
 </script>
@@ -74,19 +74,18 @@
 									</a>
 								</article>
 								
-								<!-- 
-<article class="style2">
+								<article class="style2">
 									<span class="image">
 										<img src="images/icon_ml_control.png" alt="" />
 									</span>
-									<a id=""mlcontrol_link_android">
+									<a id="mlcontrol_link_android">
 										<h2>Android<br>
 										ML Control</h2>
 										<div class="content">
 										</div>
 									</a>
 								</article>
- -->
+
 																
 							</section>
 						</div>

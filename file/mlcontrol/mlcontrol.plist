@@ -11,7 +11,7 @@
             <key>kind</key>
             <string>software-package</string>
             <key>url</key>
-            <string>https://ML-SPD.github.io/file/mlcontrol/ML_Control-ios.ipa</string>
+            <string>https://ml-webservice.netlify.app/file/mlcontrol/ML_Control-ios.ipa</string>
           </dict>
           <dict>
             <key>kind</key>
@@ -19,7 +19,7 @@
             <key>needs-shine</key>
             <true/>
             <key>url</key>
-            <string>https://ML-SPD.github.io/images/icon_ml_control.png</string>
+            <string>https://ml-webservice.netlify.app/images/icon_ml_control.png</string>
           </dict>
           <dict>
             <key>kind</key>
@@ -27,7 +27,7 @@
             <key>needs-shine</key>
             <true/>
             <key>url</key>
-            <string>https://ML-SPD.github.io/images/icon_ml_control.png</string>
+            <string>https://ml-webservice.netlify.app/images/icon_ml_control.png</string>
           </dict>
         </array>
         <key>metadata</key>
