@@ -7,11 +7,23 @@
 	var mlcontrol_ios = "itms-services://?action=download-manifest&url=https://ml-webservice.netlify.app/file/mlcontrol/mlcontrol.plist";
 	var mlcontrol_aos = "https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk";
 	
-	
 	$(document).ready(function() {
-    	document.getElementById("mlcontrol_link_ios").setAttribute("href",mlcontrol_ios);
-    	document.getElementById("mlcontrol_link_aos").setAttribute("href",mlcontrol_aos);
-	}); 
+        // 確保元素存在
+        var iosLink = document.getElementById("mlcontrol_link_ios");
+        var aosLink = document.getElementById("mlcontrol_link_aos");
+
+        if (iosLink) {
+            iosLink.setAttribute("href", mlcontrol_ios);
+        } else {
+            console.log("未找到 iOS 下載連結元素！");
+        }
+
+        if (aosLink) {
+            aosLink.setAttribute("href", mlcontrol_aos);
+        } else {
+            console.log("未找到 Android 下載連結元素！");
+        }
+    });
 
 </script>
 
@@ -52,6 +64,7 @@
 						<ul>
 							<li><a href="index.html">首頁</a></li>
 							<li><a href="udid/index.html">取得UDID</a></li>
+							<li><a href="teaching/index.html">Apple(iOS)開發者模式啟用教學</a></li>
 						</ul>
 					</nav>
 
@@ -79,7 +92,7 @@
 									<span class="image">
 										<img src="images/icon_ml_control.png" alt="" />
 									</span>
-									<a id="mlcontrol_link_android">
+									<a id="mlcontrol_link_aos">
 										<h2>Android<br>
 										ML Control</h2>
 										<div class="content">
