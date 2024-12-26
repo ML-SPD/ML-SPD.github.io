@@ -52,7 +52,7 @@
 
 1. 克隆或下載此專案：
    ```bash
-   git clone https://github.com/your-repo.git
+   git clone https://github.com/ML-SPD/ML-SPD.github.io.git
 
 2. 本地測試：
    安裝並啟動 Netlify 開發伺服器：
@@ -62,4 +62,40 @@
    
 3. 推送更新： 當您推送代碼到 GitHub 時，Netlify 會自動進行部署。
 4. 訪問網站： 部署完成後，您可以通過 Netlify 提供的 URL 訪問您的網站。
+5. 因已經做了連結，協作者應該只需要git commit & push即會自動部署網站。
+6. Git流程如下：
+   初始化 Git 儲存庫
+   若尚未初始化 Git 儲存庫，請執行以下命令：
+   ```bash
+   git init
+   ```
 
+   檢查是否連結到遠端儲存庫：
+   ```bash
+   git remote -v
+   ```
+
+   若未連結，請執行以下命令：
+   ```bash
+   git remote add origin https://github.com/ML-SPD/ML-SPD.github.io.git
+   ```
+
+   可檢查專案變更資訊：
+   ```bash
+   git status
+   ```
+
+   新增檔案到暫存區（將所有檔案新增，請記得cd到程式目錄下）：
+   ```bash
+   git add .
+   ```
+
+   提交變更（提交暫存區的檔案並添加提交訊息）：
+   ```bash
+   git commit -m "message..."
+   ```
+
+   推送變更到 GitHub：
+   ```bash
+   git push origin main
+   ```
