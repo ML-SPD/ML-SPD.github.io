@@ -8,27 +8,33 @@
 	var mlcontrol_ios_old = "itms-services://?action=download-manifest&url=https://ml-webservice.netlify.app/file/mlcontrol_102/mlcontrol.plist";
 	var mlcontrol_aos = "https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk";
 	
-	fetch('https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk', {
-		method: 'HEAD'  // 只獲取頭部訊息，避免下載檔案
-	})
-	.then(response => {
-		const lastModified = response.headers.get('Last-Modified');
-		console.log('Last Modified Time: ', lastModified);
-		// 確保元素存在
-		var iosLink = document.getElementById("mlcontrol_link_ios");
-		if (iosLink) {
-			// 取得內容區域
-			var contentDiv = iosLink.querySelector('.content');
-			
-			if (contentDiv) {
-				// 更新內容區域，顯示 lastModified 時間
-				contentDiv.innerHTML = "Last Modified: " + lastModified;
-			}
-		}
-	})
-	.catch(error => {
-		console.error('Error:', error);
-	});
+	fetch('https://ml-webservice.netlify.app/.netlify/functions/file-time')
+	.then(response => response.json())
+    .then(data => {
+        const lastModified = data.lastModified;
+        console.log('Last Modified Time:', lastModified);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+	// .then(response => {
+// 		const lastModified = response.headers.get('Last-Modified');
+// 		console.log('Last Modified Time: ', lastModified);
+// 		// 確保元素存在
+// 		var iosLink = document.getElementById("mlcontrol_link_ios");
+// 		if (iosLink) {
+// 			// 取得內容區域
+// 			var contentDiv = iosLink.querySelector('.content');
+// 			
+// 			if (contentDiv) {
+// 				// 更新內容區域，顯示 lastModified 時間
+// 				contentDiv.innerHTML = "Last Modified: " + lastModified;
+// 			}
+// 		}
+// 	})
+// 	.catch(error => {
+// 		console.error('Error:', error);
+// 	});
 	
 	$(document).ready(function() {
         // 確保元素存在
