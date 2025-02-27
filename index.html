@@ -8,7 +8,7 @@
 	var mlcontrol_ios_old = "itms-services://?action=download-manifest&url=https://ml-webservice.netlify.app/file/mlcontrol_102/mlcontrol.plist";
 	var mlcontrol_aos = "https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk";
 	
-	var version_ios = "1.0.5"; // iOS 最新版
+	var version_ios = "1.0.5-20250227a"; // iOS 最新版
     var version_ios_old = "1.0.2"; // iOS 舊版
     var version_android = "0.0.1"; // Android 版本號
 	
@@ -59,9 +59,9 @@
 		}
 	
 		// 設定 iOS 舊版下載連結和標題
-		if (iosLinkOld) {
-			iosLinkOld.setAttribute("href", mlcontrol_ios_old);
-			var iosOldH2 = iosLinkOld.querySelector("h2");
+		if (iosLink_old) {
+			iosLink_old.setAttribute("href", mlcontrol_ios_old);
+			var iosOldH2 = iosLink_old.querySelector("h2");
 			if (iosOldH2) {
 				iosOldH2.innerHTML = `iOS<br>ML Control-${version_ios_old}`;
 			}
@@ -137,8 +137,7 @@
 										<img src="images/icon_ml_control.png" alt="" />
 									</span>
 									<a id="mlcontrol_link_ios">
-										<h2>iOS<br>
-										ML Control</h2>
+										<h2></h2>
 										<div class="content">
 										</div>
 									</a>
@@ -149,8 +148,7 @@
 										<img src="images/icon_ml_control.png" alt="" />
 									</span>
 									<a id="mlcontrol_link_ios_old">
-										<h2>iOS<br>
-										ML Control Old</h2>
+										<h2></h2>
 										<div class="content">
 										</div>
 									</a>
@@ -161,8 +159,7 @@
 										<img src="images/icon_ml_control.png" alt="" />
 									</span>
 									<a id="mlcontrol_link_aos">
-										<h2>Android<br>
-										ML Control</h2>
+										<h2></h2>
 										<div class="content">
 										</div>
 									</a>
