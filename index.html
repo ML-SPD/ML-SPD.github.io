@@ -8,6 +8,10 @@
 	var mlcontrol_ios_old = "itms-services://?action=download-manifest&url=https://ml-webservice.netlify.app/file/mlcontrol_102/mlcontrol.plist";
 	var mlcontrol_aos = "https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk";
 	
+	var version_ios = "1.0.5"; // iOS 最新版
+    var version_ios_old = "1.0.2"; // iOS 舊版
+    var version_android = "0.0.1"; // Android 版本號
+	
 // 	fetch('https://ml-webservice.netlify.app/.netlify/functions/file-time')
 // 	.then(response => response.json())
 //     .then(data => {
@@ -17,14 +21,7 @@
 //     .catch(error => {
 //         console.error('Error:', error);
 //     });
-    
-    fetch('https://ml-webservice.netlify.app/file/mlcontrol/mlcontrol.plist', {
-		method: 'HEAD'
-	}).then(response => {
-		console.log(response.headers.get('Last-Modified'));
-	});
-    
-    
+        
 	// .then(response => {
 // 		const lastModified = response.headers.get('Last-Modified');
 // 		console.log('Last Modified Time: ', lastModified);
@@ -47,19 +44,41 @@
 	$(document).ready(function() {
         // 確保元素存在
         var iosLink = document.getElementById("mlcontrol_link_ios");
+		var iosLink_old = document.getElementById("mlcontrol_link_ios_old");
         var aosLink = document.getElementById("mlcontrol_link_aos");
 
-        if (iosLink) {
-            iosLink.setAttribute("href", mlcontrol_ios);
-        } else {
-            console.log("未找到 iOS 下載連結元素！");
-        }
-
-        if (aosLink) {
-            aosLink.setAttribute("href", mlcontrol_aos);
-        } else {
-            console.log("未找到 Android 下載連結元素！");
-        }
+        // 設定 iOS 下載連結和標題
+		if (iosLink) {
+			iosLink.setAttribute("href", mlcontrol_ios);
+			var iosH2 = iosLink.querySelector("h2");
+			if (iosH2) {
+				iosH2.innerHTML = `iOS<br>ML Control-${version_ios}`;
+			}
+		} else {
+			console.log("未找到 iOS 下載連結元素！");
+		}
+	
+		// 設定 iOS 舊版下載連結和標題
+		if (iosLinkOld) {
+			iosLinkOld.setAttribute("href", mlcontrol_ios_old);
+			var iosOldH2 = iosLinkOld.querySelector("h2");
+			if (iosOldH2) {
+				iosOldH2.innerHTML = `iOS<br>ML Control-${version_ios_old}`;
+			}
+		} else {
+			console.log("未找到 iOS 舊版下載連結元素！");
+		}
+	
+		// 設定 Android 下載連結和標題
+		if (aosLink) {
+			aosLink.setAttribute("href", mlcontrol_aos);
+			var aosH2 = aosLink.querySelector("h2");
+			if (aosH2) {
+				aosH2.innerHTML = `Android<br>ML Control-${version_android}`;
+			}
+		} else {
+			console.log("未找到 Android 下載連結元素！");
+		}
     });
 
 </script>
@@ -119,7 +138,7 @@
 									</span>
 									<a id="mlcontrol_link_ios">
 										<h2>iOS<br>
-										ML Control-1.0.5</h2>
+										ML Control</h2>
 										<div class="content">
 										</div>
 									</a>
@@ -131,7 +150,7 @@
 									</span>
 									<a id="mlcontrol_link_ios_old">
 										<h2>iOS<br>
-										ML Control-1.0.2</h2>
+										ML Control Old</h2>
 										<div class="content">
 										</div>
 									</a>
@@ -143,7 +162,7 @@
 									</span>
 									<a id="mlcontrol_link_aos">
 										<h2>Android<br>
-										ML Control-0.0.0</h2>
+										ML Control</h2>
 										<div class="content">
 										</div>
 									</a>
