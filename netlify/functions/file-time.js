@@ -2,18 +2,36 @@ const fs = require('fs');
 const path = require('path');
 
 exports.handler = async (event, context) => {
-// const response = await fetch("https://ml-webservice.netlify.app/udid/Apple_mobile_device_types.txt");
-// const filePath = path.join(process.cwd(), 'udid/Apple_mobile_device_types.txt');
-//     const filePath = path.join(__dirname, '../../public/file/mlcontrol/mlcontrol.plist');  // 檔案的實際路徑
-    const filePath = path.join(process.cwd(), 'file/mlcontrol/app-release.apk');
+    // 取得查詢參數中的 filename
+    const params = new URLSearchParams(event.queryStringParameters);
+    const filename = params.get('filename');
+
+    if (!filename) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify({ error: 'Missing filename parameter' }),
+        };
+    }
+
+    // 限制檔名，防止任意路徑讀取（安全性考量）
+    const allowedFiles = ['mlcontrol.plist', 'app-release.apk', 'Apple_mobile_device_types.txt'];
+    if (!allowedFiles.includes(filename)) {
+        return {
+            statusCode: 403,
+            body: JSON.stringify({ error: 'File access not allowed' }),
+        };
+    }
+
+    // 組合檔案路徑（根據 Netlify 部署的資料夾結構調整）
+    const filePath = path.join(process.cwd(), 'udid', filename);
 
     try {
-        const stats = fs.statSync(filePath);  // 同步讀取檔案的統計信息
-        const lastModified = stats.mtime.toISOString();  // 取得修改時間並格式化為 ISO 字符串
+        const stats = fs.statSync(filePath); // 取得檔案的統計信息
+        const lastModified = stats.mtime.toISOString(); // 轉換為 ISO 格式的時間
 
         return {
             statusCode: 200,
-            body: JSON.stringify({ lastModified }),  // 返回 JSON 格式的時間
+            body: JSON.stringify({ lastModified }), // 返回 JSON 格式
         };
     } catch (err) {
         return {
