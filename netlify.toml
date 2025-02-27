@@ -5,7 +5,10 @@
   publish = ""
   
 [functions]
-    included_files = ["udid/Apple_mobile_device_types.txt"] 
+    included_files = [
+    	"udid/Apple_mobile_device_types.txt",
+    	"file/**"
+    ] 
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
