@@ -8,15 +8,23 @@
 	var mlcontrol_ios_old = "itms-services://?action=download-manifest&url=https://ml-webservice.netlify.app/file/mlcontrol_102/mlcontrol.plist";
 	var mlcontrol_aos = "https://ml-webservice.netlify.app/file/mlcontrol/app-release.apk";
 	
-	fetch('https://ml-webservice.netlify.app/.netlify/functions/file-time')
-	.then(response => response.json())
-    .then(data => {
-        const lastModified = data.lastModified;
-        console.log('Last Modified Time:', lastModified);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+// 	fetch('https://ml-webservice.netlify.app/.netlify/functions/file-time')
+// 	.then(response => response.json())
+//     .then(data => {
+//         const lastModified = data.lastModified;
+//         console.log('Last Modified Time:', lastModified);
+//     })
+//     .catch(error => {
+//         console.error('Error:', error);
+//     });
+    
+    fetch('https://ml-webservice.netlify.app/file/mlcontrol/mlcontrol.plist', {
+		method: 'HEAD'
+	}).then(response => {
+		console.log(response.headers.get('Last-Modified'));
+	});
+    
+    
 	// .then(response => {
 // 		const lastModified = response.headers.get('Last-Modified');
 // 		console.log('Last Modified Time: ', lastModified);
